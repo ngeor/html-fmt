@@ -5,3 +5,11 @@ script:
   - npx lerna bootstrap
   - npx lerna run compile
   - npx lerna run test
+deploy:
+  provider: npm
+  email: Nikolaos.Georgiou@gmail.com
+  api_key:
+    secure: QPguFLAtN6rMojNoMKneG7kdR1E+5jV8tg0ZIOENc/rh+PmU7h83U2uclDOxtpw/5S9HNt6zxj5uCdpRZIF8NHXuYJB+5DYmwSyfdnvdLQxfW58qHyZ0rWICwZB7Q1eb+W3/CTTrITmE9Jz1k6PfMxABNSL8xUTWb7jzjv9lVunlIac2SxCNNN8hAyEw/loO1aXtawSno+XAqH3XX2s0uJBwQmY0kTrst80orCyS/XIL8ngMx7tNmWeglQov01R94A0BXibRzRw7EBL55G+DYcEFxLTgJ/6ytk+7mv2rGpFCaeEONBzOrdVlCgRe7H9VGk+JVW0yUBWVor30VtEb1d9eOuWaul3pf/Q7glCh1tXPjayiHWI3Mhr/XQoxDdRCd5sW0UAutSIzstI8TyKVH+4cU+GhurswRJOQiTTkuAenipPHQQ4C7k1f3bZ2ZlFPkZuO9c2Q7Xl6tS1ZfCVjI0bcm3B71QMezEae4awZYiBKXZ26+e9ton2UXd+GDdpAEypVLF1JHKTwoRj+pqgtOjssepYjcbYFckrheOF8FsHs6+8thrz5GvbxBebCXyXkV8Kkw83lh2lbyFcI8luXrVX20Aa12gf6Fgo52S53N2emA2oLrT2I0/n1IJIWRna+eh7q/vH2Eu2OFL10Ir4OrySWw8e91uRIEIEhGcVyP/E=
+  on:
+    tags: true
+    repo: ngeor/html-fmt
