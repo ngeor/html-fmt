@@ -6,6 +6,7 @@ script:
 - npx lerna run compile
 - npx lerna run test
 deploy:
+  edge: true # fix for missing api_key https://travis-ci.community/t/missing-api-key-when-deploying-to-github-releases/5761/15
   provider: npm
   email: Nikolaos.Georgiou@gmail.com
   api_key:
