@@ -3,5 +3,5 @@ node_js:
   - lts/*
 script:
   - npx lerna bootstrap
-  - npx lerna compile
-  - npx lerna test
+  - npx lerna run compile
+  - npx lerna run test
