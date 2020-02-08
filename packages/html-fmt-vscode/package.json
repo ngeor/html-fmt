@@ -1,0 +1,85 @@
+{
+	"name": "html-fmt-vscode",
+	"displayName": "TMPL formatter",
+	"description": "Formats TMPL files",
+	"version": "0.5.0",
+	"publisher": "ngeor",
+	"private": true,
+	"engines": {
+		"vscode": "^1.41.0"
+	},
+	"categories": [
+		"Formatters"
+	],
+	"activationEvents": [
+		"onLanguage:html"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": {
+			"title": "TMPL Formatter",
+			"properties": {
+				"html-fmt-vscode.indentSize": {
+					"type": "integer",
+					"default": 4,
+					"description": "Indentation size"
+				},
+				"html-fmt-vscode.multilineAttributeThreshold": {
+					"type": "integer",
+					"default": 4,
+					"description": "The number of attributes, inclusive, after which each attribute will be printed on its own line"
+				},
+				"html-fmt-vscode.voidTagsTrailingSlashStyle": {
+					"type": "string",
+					"description": "Controls the trailing slash of void elements (e.g. br, hr)",
+					"default": "remove",
+					"enum": [
+						"preserve",
+						"add",
+						"remove"
+					],
+					"enumDescriptions": [
+						"Do not modify input",
+						"Always add a trailing slash, e.g. `<br/>`",
+						"Always remove trailing slash, e.g. `<br>`"
+					]
+				},
+				"html-fmt-vscode.attributeQuoteStyle": {
+					"type": "string",
+					"description": "Controls the quotes of attribute values",
+					"default": "add",
+					"enum": [
+						"preserve",
+						"add"
+					],
+					"enumDescriptions": [
+						"Do not modify input",
+						"Always use double quotes if possible"
+					]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "echo \"Disabled because it does not work in ci\"",
+		"integration-test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.41.0",
+		"glob": "^7.1.5",
+		"mocha": "^6.2.2",
+		"tslint": "^5.20.0",
+		"typescript": "^3.6.4",
+		"vscode-test": "^1.2.2"
+	},
+	"dependencies": {
+		"@ngeor/html-fmt-core": "^0.5.0"
+	}
+}

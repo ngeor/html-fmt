@@ -1,0 +1,28 @@
+{
+  "name": "@ngeor/html-fmt-cli",
+  "version": "0.5.0",
+  "description": "CLI formatter for TMPL files",
+  "author": "Nikolaos Georgiou <nikolaos.georgiou@gmail.com>",
+  "homepage": "",
+  "license": "UNLICENSED",
+  "main": "out/index.js",
+  "bin": "out/index.js",
+  "scripts": {
+    "compile": "tsc",
+    "start": "ts-node src/index.ts",
+    "test": "echo \"No tests yet\""
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^13.5.0",
+    "chai": "^4.2.0",
+    "mocha": "^7.0.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@ngeor/html-fmt-core": "^0.5.0",
+    "commander": "^4.1.0"
+  }
+}
