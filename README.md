@@ -2,6 +2,8 @@
 
 > HTML formatter (pretty printer) supporting custom tags.
 
+[![Build Status](https://travis-ci.org/ngeor/html-fmt.svg?branch=master)](https://travis-ci.org/ngeor/html-fmt)
+
 Available as a CLI app and a Visual Studio Code extension.
 
 **Motivation**: to be able to pretty-print HTML files even if they contain custom (e.g. server-side)
