@@ -9,7 +9,7 @@ before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc
 deploy:
   provider: script
-  script: npx lerna publish
+  script: npx lerna publish -y -c from-package
   on:
     tags: true
     repo: ngeor/html-fmt
