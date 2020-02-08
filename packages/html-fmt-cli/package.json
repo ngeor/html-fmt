@@ -24,5 +24,8 @@
   "dependencies": {
     "@ngeor/html-fmt-core": "^0.5.0",
     "commander": "^4.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - lts/*
+- lts/*
 script:
-  - npx lerna bootstrap
-  - npx lerna run compile
-  - npx lerna run test
+- npx lerna bootstrap
+- npx lerna run compile
+- npx lerna run test
 deploy:
   provider: npm
   email: Nikolaos.Georgiou@gmail.com
   api_key:
-    secure: QPguFLAtN6rMojNoMKneG7kdR1E+5jV8tg0ZIOENc/rh+PmU7h83U2uclDOxtpw/5S9HNt6zxj5uCdpRZIF8NHXuYJB+5DYmwSyfdnvdLQxfW58qHyZ0rWICwZB7Q1eb+W3/CTTrITmE9Jz1k6PfMxABNSL8xUTWb7jzjv9lVunlIac2SxCNNN8hAyEw/loO1aXtawSno+XAqH3XX2s0uJBwQmY0kTrst80orCyS/XIL8ngMx7tNmWeglQov01R94A0BXibRzRw7EBL55G+DYcEFxLTgJ/6ytk+7mv2rGpFCaeEONBzOrdVlCgRe7H9VGk+JVW0yUBWVor30VtEb1d9eOuWaul3pf/Q7glCh1tXPjayiHWI3Mhr/XQoxDdRCd5sW0UAutSIzstI8TyKVH+4cU+GhurswRJOQiTTkuAenipPHQQ4C7k1f3bZ2ZlFPkZuO9c2Q7Xl6tS1ZfCVjI0bcm3B71QMezEae4awZYiBKXZ26+e9ton2UXd+GDdpAEypVLF1JHKTwoRj+pqgtOjssepYjcbYFckrheOF8FsHs6+8thrz5GvbxBebCXyXkV8Kkw83lh2lbyFcI8luXrVX20Aa12gf6Fgo52S53N2emA2oLrT2I0/n1IJIWRna+eh7q/vH2Eu2OFL10Ir4OrySWw8e91uRIEIEhGcVyP/E=
+    secure: spRkozrKyq2IntPcsb32GFWDX/s/9ANQK/bhdYOIuC0sTx84Yi2Eos5gVKtIuRzZ/jVYnQbiZCJVUGSZ7DGetrN2D5/6j7nASeMxKcn4p0PRNHfCJhU346Swvs5aTSI0yI79tDDTB8VfZikpUMRJnLqzJSdRb+2la/N0eDPnTV50qWMLbRK5cn2dcRx2tCnRgeeUyYgABbMEiVSf9+5E8sgX0sehfZIn6KrqB84DSWcuPaVypy7UYCWN2Xq2xozLj97/s3KmqTr2Pr68f+f5iR8MyPOqY1i6227DE+Z5XHGMI4FfV1w0psg7x1aC3E8A/BgA08sOqogshxB7py0GpsXZL2PdgOf2Tfe8bdM8d6CCEuBjGoTzDjA+Or6p+ophAdI/lSHCut6RukgWG19RdtoFUpUB7ANGT5/XZMuv5sExoR24ucaeqOaudxQITiJY+ZXnU4CWPf2JwaCDjF44oGWRUgMN8WKJoowoEQkbbKekFTnxcx7RcDclOl3vaSi7EQQVsD6tA0S+IKsWNbXz2XdGUQFzm6JeACd8DA5fzJsAgLXW/u7VTidMMLbigN6A4JTO3sL/lJ/RkMQ2ua3vB6sb2PQMpCbJFbKo75v1J99ZOnEohvg937syeXbtROJ9eM4IjipXQDLjr9dUsaFLQd7VG4E4RObP0pAJhtZZo6Q=
   on:
     tags: true
     repo: ngeor/html-fmt
