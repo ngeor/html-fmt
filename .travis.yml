@@ -1,16 +1,18 @@
 language: node_js
 node_js:
-- lts/*
+  - lts/*
 script:
-- npx lerna bootstrap
-- npx lerna run compile
-- npx lerna run test
+  - npx lerna bootstrap
+  - npx lerna run compile
+  - npx lerna run test
+before_deploy:
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc
 deploy:
-  edge: true # fix for missing api_key https://travis-ci.community/t/missing-api-key-when-deploying-to-github-releases/5761/15
-  provider: npm
-  email: Nikolaos.Georgiou@gmail.com
-  api_key:
-    secure: spRkozrKyq2IntPcsb32GFWDX/s/9ANQK/bhdYOIuC0sTx84Yi2Eos5gVKtIuRzZ/jVYnQbiZCJVUGSZ7DGetrN2D5/6j7nASeMxKcn4p0PRNHfCJhU346Swvs5aTSI0yI79tDDTB8VfZikpUMRJnLqzJSdRb+2la/N0eDPnTV50qWMLbRK5cn2dcRx2tCnRgeeUyYgABbMEiVSf9+5E8sgX0sehfZIn6KrqB84DSWcuPaVypy7UYCWN2Xq2xozLj97/s3KmqTr2Pr68f+f5iR8MyPOqY1i6227DE+Z5XHGMI4FfV1w0psg7x1aC3E8A/BgA08sOqogshxB7py0GpsXZL2PdgOf2Tfe8bdM8d6CCEuBjGoTzDjA+Or6p+ophAdI/lSHCut6RukgWG19RdtoFUpUB7ANGT5/XZMuv5sExoR24ucaeqOaudxQITiJY+ZXnU4CWPf2JwaCDjF44oGWRUgMN8WKJoowoEQkbbKekFTnxcx7RcDclOl3vaSi7EQQVsD6tA0S+IKsWNbXz2XdGUQFzm6JeACd8DA5fzJsAgLXW/u7VTidMMLbigN6A4JTO3sL/lJ/RkMQ2ua3vB6sb2PQMpCbJFbKo75v1J99ZOnEohvg937syeXbtROJ9eM4IjipXQDLjr9dUsaFLQd7VG4E4RObP0pAJhtZZo6Q=
+  provider: script
+  script: npx lerna publish
   on:
     tags: true
     repo: ngeor/html-fmt
+env:
+  global:
+    secure: JHFdPRocFeQFCVkL1tz7HmnVOPErDmRbxLrKyxFg3QkH8Bh8pLrzPjOSWxCGUbNPTr5Q3IUX++4jnz+JMY9BziZTjUeLcekCdKDnZhJOjHE72nDc5C9QmrHkqOejuh9NBNR16dMY6NyTsdFLGHT68eEUHl0l8T0qIY2wgLLq+R8Cf1///iKctVg3YKBTmZTpS6lDRk/lFFl4x3a8ibf0Bihi8zkuyg4UbVm5JDvMqjpRxnVCVWKJobj8BA+Zy8nq4s4pe3XuH4zdvlip0NPigZV10UQ73zlCenX0mJDWo9ARZ1o4cVl0uOG0fz0m3laVdPQoxwIm+SHbBEmZgpBlcDh8n7QnYBCpZsMjuQJ89D/qKwYS4votOTzeLmwbpE3QWaUrbWFLW+coBpkQn7ojKX6OcVxrRrGeojy2yq6F20IVQ/s+M+7X/bd427PmqB2OGYsbtHds/7dMi+JBPtxyeA8oScAJeOjHi5eUU1Emts0uCF1OfusxIueX7h0Ls2AI4hw4RdHWE/fShaUbcSr/XF9zCAU6HRAKygrEiaDuJjBP/Md0Z9grihFba0R2iug9pml+d6wsIxo0pdX6FfEdTnsa7zgUAiwI+joSmefXfcwzgzJQIU2HYdQH7uLev12mV33fKtgXBcYsGLpU8WQ6sUcXJAfTY+MpAChV0WWt9lk=
