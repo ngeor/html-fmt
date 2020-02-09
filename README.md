@@ -3,6 +3,7 @@
 > HTML formatter (pretty printer) supporting custom tags.
 
 [![Build Status](https://travis-ci.org/ngeor/html-fmt.svg?branch=master)](https://travis-ci.org/ngeor/html-fmt)
+![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/NikolaosGeorgiou.html-fmt-vscode)
 
 Available as a CLI app and a Visual Studio Code extension.
 
@@ -17,7 +18,8 @@ custom (e.g. server-side) tags.
 
 ## Download Visual Studio Code Extension
 
-You can download the Visual Studio Code extension from _TODO_.
+You can download the Visual Studio Code extension from the
+[Marketplace](https://marketplace.visualstudio.com/items?itemName=NikolaosGeorgiou.html-fmt-vscode).
 
 Then, install the vsix file with
 `code --install-extension html-fmt-vscode-*.vsix`.
@@ -97,6 +99,8 @@ to package the extension:
 
 To publish the extension:
 
-- Create a Personal Access Token [here](https://dev.azure.com/nikolaosgeorgiou/_usersSettings/tokens). Select "All accessible organizations" and all "Marketplace" scopes.
+- Create a Personal Access Token
+  [here](https://dev.azure.com/nikolaosgeorgiou/_usersSettings/tokens). Select
+  "All accessible organizations" and all "Marketplace" scopes.
 - Login with `vsce login NikolaosGeorgiou`
 - Publish with `vsce publish`
