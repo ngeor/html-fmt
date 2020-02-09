@@ -1,10 +1,10 @@
 {
   "name": "@ngeor/html-fmt-cli",
   "version": "0.5.1",
-  "description": "CLI formatter for TMPL files",
+  "description": "CLI formatter for HTML files",
   "author": "Nikolaos Georgiou <nikolaos.georgiou@gmail.com>",
   "homepage": "",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "out/index.js",
   "bin": "out/index.js",
   "scripts": {

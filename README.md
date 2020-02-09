@@ -6,8 +6,8 @@
 
 Available as a CLI app and a Visual Studio Code extension.
 
-**Motivation**: to be able to pretty-print HTML files even if they contain custom (e.g. server-side)
-tags.
+**Motivation**: to be able to pretty-print HTML files even if they contain
+custom (e.g. server-side) tags.
 
 ## Packages
 
@@ -18,7 +18,6 @@ tags.
 ## Download Visual Studio Code Extension
 
 You can download the Visual Studio Code extension from _TODO_.
-
 
 Then, install the vsix file with
 `code --install-extension html-fmt-vscode-*.vsix`.
@@ -49,9 +48,9 @@ Command line options:
   the trailing slash of void elements (`br`, `hr`, etc). Possible values:
   preserve, add, remove. The default value is remove.
 - `--attribute-quote-style <attribute-quote-style>` Controls the quotes of
-  attribute values. Possible values: preserve, add. The default value is
-  add.
-- `--pre-commit-hook` Runs as a git pre-commit hook (inspired by [Prettier](https://prettier.io/docs/en/precommit.html#option-5-bash-script))
+  attribute values. Possible values: preserve, add. The default value is add.
+- `--pre-commit-hook` Runs as a git pre-commit hook (inspired by
+  [Prettier](https://prettier.io/docs/en/precommit.html#option-5-bash-script))
 
 You can use the CLI with one of the following ways:
 
@@ -63,7 +62,8 @@ You can use the CLI with one of the following ways:
 
 ### Pre-commit hook
 
-Save the following shell script as `.git/hooks/pre-commit` and give it execute permission:
+Save the following shell script as `.git/hooks/pre-commit` and give it execute
+permission:
 
 ```sh
 #!/bin/sh
@@ -75,7 +75,28 @@ npx @ngeor/html-fmt-cli --pre-commit-hook -m -i .
 - [Packaging VS Code Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
 - [Prettier pre-commit hook](https://prettier.io/docs/en/precommit.html#option-5-bash-script)
 
-## Bumping version
+## Developing
+
+### Bumping version
+
+You will need `lerna` (install with `npm i -g lerna`).
 
 To bump the version on all packages, use lerna:
 `lerna version patch --force-publish`
+
+### Creating extension
+
+You will need `vsce` (install with `npm i -g vsce`).
+
+`vsce` does not work well with the lerna monorepo. Run the following to be able
+to package the extension:
+
+- `cd packages/html-fmt-vscode`
+- `rm -rf node_modules && npm i`
+- `vsce package`
+
+To publish the extension:
+
+- Create a Personal Access Token [here](https://dev.azure.com/nikolaosgeorgiou/_usersSettings/tokens). Select "All accessible organizations" and all "Marketplace" scopes.
+- Login with `vsce login NikolaosGeorgiou`
+- Publish with `vsce publish`

@@ -1,9 +1,14 @@
 {
 	"name": "html-fmt-vscode",
-	"displayName": "TMPL formatter",
-	"description": "Formats TMPL files",
+	"displayName": "HTML formatter",
+	"description": "Formats HTML files",
 	"version": "0.5.1",
 	"publisher": "ngeor",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ngeor/html-fmt.git"
+	},
 	"private": true,
 	"engines": {
 		"vscode": "^1.41.0"
@@ -17,7 +22,7 @@
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
-			"title": "TMPL Formatter",
+			"title": "HTML Formatter",
 			"properties": {
 				"html-fmt-vscode.indentSize": {
 					"type": "integer",

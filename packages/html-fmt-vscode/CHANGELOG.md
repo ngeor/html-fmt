@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.5.2]
+
 - Configurable option for the quotes of attribute values.
 - Changed the default value for the trailing slash of void elements to `remove`.
 
