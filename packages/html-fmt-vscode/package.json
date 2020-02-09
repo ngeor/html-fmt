@@ -3,7 +3,7 @@
 	"displayName": "HTML formatter",
 	"description": "Formats HTML files",
 	"version": "0.5.2",
-	"publisher": "ngeor",
+	"publisher": "NikolaosGeorgiou",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
