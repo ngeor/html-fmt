@@ -1,10 +1,19 @@
 # Change Log
 
-All notable changes to the "html-fmt-vscode" extension will be documented in this file.
+All notable changes to the "html-fmt-vscode" extension will be documented in
+this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how
+to structure this file.
 
 ## [Unreleased]
+
+## [0.6.0]
+
+- Support for trimming whitespace modifier (e.g. `<~TMPL_V foo ~>`)
+- Support `TMPL_INLINE` with extra arguments
+- Do not add quotes on TMPL_V attributes if missing
+- Better support for `attr=[% value %]` expressions
 
 ## [0.5.2]
 
@@ -13,13 +22,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.4.0]
 
-- Configurable option for the trailing slash of [void elements](https://html.spec.whatwg.org/multipage/syntax.html#void-elements)
+- Configurable option for the trailing slash of
+  [void elements](https://html.spec.whatwg.org/multipage/syntax.html#void-elements)
 
 ## [0.3.0]
 
 - Support indentation size as a setting in VS Code Extension
 - Multiline attribute threshold
-- Support for tags: hr, style, _TMPL_INCLUDE, TMPL_INCLUDE, TMPL_LOOP, TMPL_STATIC_URL, TMPL_URI, TMPL_VAR
+- Support for tags: hr, style, \_TMPL_INCLUDE, TMPL_INCLUDE, TMPL_LOOP,
+  TMPL_STATIC_URL, TMPL_URI, TMPL_VAR
 - Support for tags with mixed normal attributes and perl expressions
 - Improved DOCTYPE support
 - Support for dollar sign expressions like `<TMPL_VAR $error_msg>`

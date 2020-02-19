@@ -107,7 +107,7 @@ export class Formatter {
             }
 
             if (token instanceof OpenTagToken) {
-                this.onOpenTag(token.tagName, token.tagAttributes, token.hasTrailingSlash);
+                this.onOpenTag(token.tagName, token.tagAttributes, token.hasTrailingSlash, token.trimsLeftWhitespace, token.trimsRightWhitespace);
             } else if (token instanceof CloseTagToken) {
                 this.onCloseTag(token.tagName);
             } else if (token instanceof TextToken) {
@@ -129,7 +129,7 @@ export class Formatter {
         return this.writer.output;
     }
 
-    onOpenTag(openTag: string, tagAttributes: Attribute[], hasTrailingSlash: boolean): void {
+    onOpenTag(openTag: string, tagAttributes: Attribute[], hasTrailingSlash: boolean, trimsLeftWhitespace: boolean, trimsRightWhitespace: boolean): void {
         const previousTagName = this.tagName;
         this.tagName = openTag;
         this.lastText = ''; // reset
@@ -144,17 +144,21 @@ export class Formatter {
             this.writer.startLine();
         }
 
-        this.writer.print(`<${openTag}`);
+        this.writer.print('<');
+        if (trimsLeftWhitespace) {
+            this.writer.print('~');
+        }
+        this.writer.print(openTag);
 
         if (tagAttributes && tagAttributes.length > 0) {
             if (tagAttributes.length >= this.options.multilineAttributeThreshold && openTag !== "!DOCTYPE") {
                 this.writer.endLine();
                 this.writer.increaseIndentation();
-                tagAttributes.forEach(a => this.writer.printLine(`${this.formatAttribute(a)}`));
+                tagAttributes.forEach(a => this.writer.printLine(`${this.formatAttribute(openTag, a)}`));
                 this.writer.decreaseIndentation();
                 this.writer.startLine();
             } else {
-                tagAttributes.forEach(a => this.writer.print(` ${this.formatAttribute(a)}`));
+                tagAttributes.forEach(a => this.writer.print(` ${this.formatAttribute(openTag, a)}`));
             }
         }
 
@@ -180,6 +184,9 @@ export class Formatter {
             this.writer.print('/');
         }
 
+        if (trimsRightWhitespace) {
+            this.writer.print('~');
+        }
         this.writer.print('>');
         this.writer.pendingEndOfLine = true;
         if (!hasTrailingSlash && !this.isNonIndentingTag(this.tagName)) {
@@ -189,13 +196,13 @@ export class Formatter {
         this.state = addTrailingSlash ? State.CloseTag : State.OpenTag;
     }
 
-    formatAttribute(a: Attribute): string {
+    formatAttribute(tagName: string, a: Attribute): string {
         if (a instanceof RawAttribute) {
             return a.body;
         } else if (a instanceof TokenAttribute) {
             return this.formatToken(a.token);
         } else if (a instanceof NameValueAttribute) {
-            return this.formatNameValueAttribute(a);
+            return this.formatNameValueAttribute(tagName, a);
         } else {
             throw new Error(`Unsupported attribute ${a}`);
         }
@@ -205,7 +212,7 @@ export class Formatter {
         if (a instanceof OpenTagToken) {
             let result = '<' + a.tagName;
             if (a.tagAttributes) {
-                result += a.tagAttributes.map(x => ` ${this.formatAttribute(x)}`).join('');
+                result += a.tagAttributes.map(x => ` ${this.formatAttribute(a.tagName, x)}`).join('');
             }
             if (a.hasTrailingSlash) {
                 result += '/';
@@ -219,18 +226,18 @@ export class Formatter {
         }
     }
 
-    formatNameValueAttribute(a: NameValueAttribute): string {
+    formatNameValueAttribute(tagName: string, a: NameValueAttribute): string {
         if (a.value) {
-            return a.name + '=' + this.formatAttributeValue(a.value);
+            return a.name + '=' + this.formatAttributeValue(tagName, a.value);
         } else {
             return a.name;
         }
     }
 
-    formatAttributeValue(attributeValue: AttributeValue): string {
+    formatAttributeValue(tagName: string, attributeValue: AttributeValue): string {
         if (typeof attributeValue.values === 'string') {
             let quote = attributeValue.quote;
-            if (this.options.attributeQuoteStyle === AttributeQuoteStyle.Add && !this.tagName.startsWith("TMPL_")) {
+            if (this.options.attributeQuoteStyle === AttributeQuoteStyle.Add && !tagName.startsWith("TMPL_")) {
                 if (attributeValue.values.indexOf('"') < 0) {
                     // does not contain ", safe to quote with "
                     quote = '"';
@@ -241,7 +248,7 @@ export class Formatter {
             return quote + attributeValue.values + quote;
         }
 
-        return attributeValue.quote + attributeValue.values.map(a => this.formatAttribute(a)).join('') + attributeValue.quote;
+        return attributeValue.quote + attributeValue.values.map(a => this.formatAttribute(tagName, a)).join('') + attributeValue.quote;
     }
 
     onCloseTag(closeTag: string): void {

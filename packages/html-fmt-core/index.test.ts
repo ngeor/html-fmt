@@ -427,6 +427,15 @@ describe('Formatter', () => {
         expect(result).to.eql(input + "\n");
     });
 
+    it('should support <~TMPL_V ~> tags', () => {
+        const input = `<h2 class="note-text">
+    <~TMPL_V escape=HTML report.slide.noteText~>
+</h2>
+`;
+        const result = format(input);
+        expect(result).to.eql(input);
+    });
+
     describe('voidTagsTrailingSlashStyle', () => {
         it('default', () => {
             const input = `<div><br><br/><br /><span/></div>`;
@@ -529,4 +538,28 @@ describe('Formatter', () => {
             expect(result).to.eql(input + "\n");
         });
     });
+
+    it('should support expressions with arrows', () => {
+        const input = `<div>
+        <TMPL_INLINE SliTypeValue.inc class="boo" id=[% $objective->{id} %] type="" value="" role=[% $service->{ref}->{name} %]>
+        </div>`;
+        const result = format(input, { multilineAttributeThreshold: 2 });
+        expect(result).to.eql(`<div>
+    <TMPL_INLINE
+        SliTypeValue.inc
+        class="boo"
+        id=[% $objective->{id} %]
+        type=""
+        value=""
+        role=[% $service->{ref}->{name} %]
+    >
+</div>
+`);
+    });
+
+    it('should not escape TMPL_V inside attribute', () => {
+        const input = `<input value="<TMPL_V escape=HTML objective>">`;
+        const result = format(input);
+        expect(result).to.eql('<input value="<TMPL_V escape=HTML objective>">\n');
+    })
 });

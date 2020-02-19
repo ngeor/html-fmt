@@ -69,7 +69,13 @@ export class NameValueAttribute extends Attribute {
 }
 
 export class OpenTagToken extends ParserToken {
-    constructor(public tagName: string, public tagAttributes: Attribute[], public hasTrailingSlash: boolean) {
+    constructor(
+        public tagName: string,
+        public tagAttributes: Attribute[],
+        public hasTrailingSlash: boolean,
+        public trimsLeftWhitespace: boolean,
+        public trimsRightWhitespace: boolean,
+    ) {
         super();
     }
 }
@@ -158,7 +164,7 @@ export class Parser {
 
     readAttributes(): Attribute[] {
         let result: Attribute[] = [];
-        while (!this.reader.eof && this.reader.currentChar !== '>' && this.reader.currentChar !== '/') {
+        while (!this.reader.eof && this.reader.currentChar !== '>' && this.reader.currentChar !== '/' && this.reader.currentChar !== '~') {
             if (this.reader.peek('<TMPL_IF')) {
                 // read everything as-is until </TMPL_IF>
                 // e.g. <p <TMPL_IF foo>bar</TMPL_IF> class="blue">hello</p>
@@ -193,6 +199,10 @@ export class Parser {
 
         this.reader.demandChar('=');
         this.reader.skipWhitespace();
+
+        if (this.reader.peek('[%')) {
+            return new AttributeValue('', this.readPerlExpression());
+        }
 
         let quote = '';
         if (['"', "'"].indexOf(this.reader.currentChar) >= 0) {
@@ -269,16 +279,38 @@ export class Parser {
         return result;
     }
 
+    readRawInlineArgument(): string {
+        let result = '';
+        while (!this.reader.eof && this.reader.currentChar !== '>' && this.reader.currentChar !== ' ') {
+            result += this.reader.readOne();
+        }
+
+        this.reader.skipWhitespace();
+
+        return result.trim();
+    }
+
     readOpenTag() : OpenTagToken {
         // opening tag i.e. <p> or <input class="field" required>
+        // support <~ tags, trimming whitespace
+        const trimsLeftWhitespace = this.reader.peek('~');
+        if (trimsLeftWhitespace) {
+            this.reader.readOne();
+        }
         const tagName = this.readTagName();
         this.reader.skipWhitespace();
         let tagAttributes: Attribute[];
         let hasTrailingSlash = false;
         if (tagsWithRawArgument.includes(tagName)) {
-            // just read everything until >
-            const inlineArgument = this.reader.readUntilChar('>').trim();
-            tagAttributes = inlineArgument ? [new RawAttribute(inlineArgument)] : [];
+            // just read everything until > or whitespace
+            const inlineArgument = this.readRawInlineArgument();
+            const inlineArguments: Attribute[] = inlineArgument ? [new RawAttribute(inlineArgument)] : [];
+            if (this.reader.currentChar === '>') {
+                // no more arguments
+                tagAttributes = inlineArguments;
+            } else {
+                tagAttributes = inlineArguments.concat(this.readAttributes());
+            }
         } else {
             // read attribute list
             tagAttributes = this.readAttributes();
@@ -287,10 +319,15 @@ export class Parser {
                 this.reader.readOne();
             }
         }
+
+        const trimsRightWhitespace = this.reader.peek('~');
+        if (trimsRightWhitespace) {
+            this.reader.readOne();
+        }
         this.reader.demandChar('>');
         this.inTagWithRawBody = tagsWithRawBody.includes(tagName) && !hasTrailingSlash;
         this.lastTag = tagName;
-        return new OpenTagToken(tagName, tagAttributes, hasTrailingSlash);
+        return new OpenTagToken(tagName, tagAttributes, hasTrailingSlash, trimsLeftWhitespace, trimsRightWhitespace);
     }
 
     parseServerSideComments() : ServerSideCommentToken {
