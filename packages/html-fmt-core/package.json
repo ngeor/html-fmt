@@ -1,6 +1,6 @@
 {
   "name": "@ngeor/html-fmt-core",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "HTML formatter",
   "scripts": {
     "compile": "tsc",
