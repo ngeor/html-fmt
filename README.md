@@ -104,3 +104,26 @@ To publish the extension:
   "All accessible organizations" and all "Marketplace" scopes.
 - Login with `vsce login NikolaosGeorgiou`
 - Publish with `vsce publish`
+
+ 
+## Supported Syntax
+  
+### HTML
+   
+Supported elements:
+    
+- `<!doctype>` declaration
+- `<!-- hello -->` comments
+- `<br>` void elements
+- `<input required>` attributes without value
+- `<div>hello</div>` elements with text
+     
+### TMPL
+      
+- `<~TMPL_V name ~>` whitespace trimming elements
+- `## comment` server-side comments
+- `<TMPL_INCLUDE a/file/somewhere>`
+- `<TMPL_INCLUDE a/file type=[% expression %] id="hello">` attributes with Perl expressions
+- Proper indentation for `<TMPL_IF>` and `<TMPL_ELSE>`
+- Tags inside tags `<p <TMPL_IF condition>class="hi"</TMPL_IF>>`
+- Tags inside attribute values `<p class="<TMPL_V foo escape=HTML>">`
