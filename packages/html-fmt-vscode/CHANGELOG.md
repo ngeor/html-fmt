@@ -8,6 +8,8 @@ to structure this file.
 
 ## [Unreleased]
 
+- Support for perl expressions inside tags inside attribute values
+
 ## [0.6.0]
 
 - Support for trimming whitespace modifier (e.g. `<~TMPL_V foo ~>`)

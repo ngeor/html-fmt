@@ -2,7 +2,7 @@ import { format } from "./index";
 import { expect } from "chai";
 import { VoidTagsTrailingSlashStyle, AttributeQuoteStyle } from "./src/FormatOptions";
 
-describe('Formatter', () => {
+describe('index', () => {
     it('should parse a div', () => {
         const input = "<div>hello</div>";
         const result = format(input);
@@ -561,5 +561,11 @@ describe('Formatter', () => {
         const input = `<input value="<TMPL_V escape=HTML objective>">`;
         const result = format(input);
         expect(result).to.eql('<input value="<TMPL_V escape=HTML objective>">\n');
-    })
+    });
+
+    it('should support perl expressions inside a tag inside an attribute value', () => {
+        const input = `<script src="<TMPL_STATIC_URL [% "path/$version/app.js" %]>"></script>`;
+        const result = format(input);
+        expect(result).to.eql(input + "\n");
+    });
 });

@@ -280,6 +280,11 @@ export class Parser {
     }
 
     readRawInlineArgument(): string {
+        if (this.reader.peek('[%')) {
+            // <TMPL_STATIC_URL [% perl expression %] >
+            return '';
+        }
+
         let result = '';
         while (!this.reader.eof && this.reader.currentChar !== '>' && this.reader.currentChar !== ' ') {
             result += this.reader.readOne();
