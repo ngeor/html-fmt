@@ -235,20 +235,23 @@ export class Formatter {
     }
 
     formatAttributeValue(tagName: string, attributeValue: AttributeValue): string {
+        let formattedValue = '';
         if (typeof attributeValue.values === 'string') {
-            let quote = attributeValue.quote;
-            if (this.options.attributeQuoteStyle === AttributeQuoteStyle.Add && !tagName.startsWith("TMPL_")) {
-                if (attributeValue.values.indexOf('"') < 0) {
-                    // does not contain ", safe to quote with "
-                    quote = '"';
-                } else if (attributeValue.values.indexOf("'") < 0) {
-                    quote = "'";
-                }
-            }
-            return quote + attributeValue.values + quote;
+            formattedValue = attributeValue.values;
+        } else {
+            formattedValue = attributeValue.values.map(a => this.formatAttribute(tagName, a)).join('');
         }
 
-        return attributeValue.quote + attributeValue.values.map(a => this.formatAttribute(tagName, a)).join('') + attributeValue.quote;
+        let quote = attributeValue.quote;
+        if (this.options.attributeQuoteStyle === AttributeQuoteStyle.Add && !tagName.startsWith("TMPL_")) {
+            if (formattedValue.indexOf('"') < 0) {
+                // does not contain ", safe to quote with "
+                quote = '"';
+            } else if (formattedValue.indexOf("'") < 0) {
+                quote = "'";
+            }
+        }
+        return quote + formattedValue + quote;
     }
 
     onCloseTag(closeTag: string): void {

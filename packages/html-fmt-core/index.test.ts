@@ -118,7 +118,7 @@ describe('index', () => {
     it('should read unquoted TMPL_V attribute values', () => {
         const input = "<input value=<TMPL_V whatever>>";
         const result = format(input);
-        expect(result).to.eql(input + "\n");
+        expect(result).to.eql(`<input value="<TMPL_V whatever>">\n`);
     });
 
     it('should parse attribute with embedded TMPL_IF', () => {
@@ -127,7 +127,7 @@ describe('index', () => {
 </a>`;
         const result = format(input);
         expect(result).to.eql(`<a
-    href="https://docs.com/<TMPL_IF [% $service_type eq "service_health" %]>servicehealth/overview/tooling.html<TMPL_ELSE>slo/overview/tooling.html#how-its-work</TMPL_IF>"
+    href='https://docs.com/<TMPL_IF [% $service_type eq "service_health" %]>servicehealth/overview/tooling.html<TMPL_ELSE>slo/overview/tooling.html#how-its-work</TMPL_IF>'
     class="c-footlink bui-link bui-link--primary"
     title="Documentation"
     target="_blank"
@@ -406,7 +406,12 @@ describe('index', () => {
 </TMPL_FOR>
 `;
         const result = format(input);
-        expect(result).to.eql(input);
+        expect(result).to.eql(`<TMPL_FOR incident IN=incidents>
+    <option value="<TMPL_VAR [% $incident->id %]>">
+        <TMPL_VAR [% $incident->display_name %]>
+    </option>
+</TMPL_FOR>
+`);
     });
 
     it('should support TMPL_STATIC_URL', () => {
@@ -496,7 +501,7 @@ describe('index', () => {
     type="number"
     autocomplete="off"
     [% perl expression %]
-    value=<TMPL_V age>
+    value="<TMPL_V age>"
     onclick='alert("hello");'
 >
 `);
@@ -526,7 +531,7 @@ describe('index', () => {
     type="number"
     autocomplete="off"
     [% perl expression %]
-    value=<TMPL_V age>
+    value="<TMPL_V age>"
     onclick='alert("hello");'
 >
 `);
@@ -566,6 +571,12 @@ describe('index', () => {
     it('should support perl expressions inside a tag inside an attribute value', () => {
         const input = `<script src="<TMPL_STATIC_URL [% "path/$version/app.js" %]>"></script>`;
         const result = format(input);
-        expect(result).to.eql(input + "\n");
+        expect(result).to.eql(`<script src='<TMPL_STATIC_URL [% "path/$version/app.js" %]>'></script>\n`);
+    });
+
+    it('should add quotes to value attribute if it consists of just a <TMPL_V tag which does not have quotes', () => {
+        const input = `<input value=<TMPL_V escape=HTML objective.id>>`;
+        const result = format(input);
+        expect(result).to.eql(`<input value="<TMPL_V escape=HTML objective.id>">\n`);
     });
 });
