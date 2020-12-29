@@ -579,4 +579,16 @@ describe('index', () => {
         const result = format(input);
         expect(result).to.eql(`<input value="<TMPL_V escape=HTML objective.id>">\n`);
     });
+
+    it('should support bracket attribute', () => {
+        const input = `<div [attr]="value" [attr2]="value2" [attr3]="value3" [attr4]="value4">`;
+        const result = format(input);
+        expect(result).to.eql(`<div
+    [attr]="value"
+    [attr2]="value2"
+    [attr3]="value3"
+    [attr4]="value4"
+>
+`);
+    });
 });

@@ -151,7 +151,9 @@ export class Parser {
             || ch === '-'
             || ch === ':'
             || ch === '.'
-            || ch === '!';
+            || ch === '!'
+            || ch === '['
+            || ch === ']';
     }
 
     readTagName(): string {
