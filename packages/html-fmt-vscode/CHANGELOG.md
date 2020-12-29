@@ -8,6 +8,9 @@ to structure this file.
 
 ## [Unreleased]
 
+# [0.7.0]
+
+- Added: Support for Angular square bracket attributes (thanks to [ringtail003](https://github.com/ringtail003)!)
 - Fix: Support for perl expressions inside tags inside attribute values
 - Fix: Adding quotes for `value` attribute in `<input value="<TMPL_V something>">`
 
