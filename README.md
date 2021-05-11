@@ -79,9 +79,11 @@ npx @ngeor/html-fmt-cli --pre-commit-hook -m -i .
 
 ## Developing
 
-### Bumping version
+### Requirements
 
 You will need `lerna` (install with `npm i -g lerna`).
+
+### Bumping version
 
 To bump the version on all packages, use lerna:
 `lerna version patch --force-publish`
@@ -105,21 +107,21 @@ To publish the extension:
 - Login with `vsce login NikolaosGeorgiou`
 - Publish with `vsce publish`
 
- 
+
 ## Supported Syntax
-  
+
 ### HTML
-   
+
 Supported elements:
-    
+
 - `<!doctype>` declaration
 - `<!-- hello -->` comments
 - `<br>` void elements
 - `<input required>` attributes without value
 - `<div>hello</div>` elements with text
-     
+
 ### TMPL
-      
+
 - `<~TMPL_V name ~>` whitespace trimming elements
 - `## comment` server-side comments
 - `<TMPL_INCLUDE a/file/somewhere>`

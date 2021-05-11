@@ -150,7 +150,8 @@ function main() {
     );
     commander.option('--pre-commit-hook', 'Runs as a git pre-commit hook, against the files reported by git diff --cached --name-only --diff-filter=ACMR');
     commander.parse(process.argv);
-    const input: string = commander.input;
+    const args : Arguments = commander as unknown as Arguments;
+    const input: string = args.input;
     if (!input) {
         return commander.help();
     }
@@ -162,9 +163,9 @@ function main() {
 
     const stat = statSync(input);
     if (stat.isDirectory()) {
-        return processDirectory(commander as unknown as Arguments);
+        return processDirectory(args);
     } else {
-        return processFile(commander as unknown as Arguments);
+        return processFile(args);
     }
 }
 
