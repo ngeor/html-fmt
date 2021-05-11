@@ -71,7 +71,8 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile",
 		"test": "echo \"Disabled because it does not work in ci\"",
-		"integration-test": "node ./out/test/runTest.js"
+		"integration-test": "node ./out/test/runTest.js",
+		"rm-lock": "rm package-lock.json"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",

@@ -4,7 +4,8 @@
   "description": "HTML formatter",
   "scripts": {
     "compile": "tsc",
-    "test": "mocha -r ts-node/register *.test.ts"
+    "test": "mocha -r ts-node/register *.test.ts",
+    "rm-lock": "rm package-lock.json"
   },
   "main": "out/index.js",
   "author": "Nikolaos Georgiou",
