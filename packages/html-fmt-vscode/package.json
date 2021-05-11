@@ -11,7 +11,7 @@
 	},
 	"private": true,
 	"engines": {
-		"vscode": "^1.41.0"
+		"vscode": "^1.56.0"
 	},
 	"categories": [
 		"Formatters"
