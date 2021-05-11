@@ -12,7 +12,7 @@
             "args": [
                 "-r",
                 "ts-node/register",
-                "${workspaceFolder}/src/*.test.ts"
+                "${workspaceFolder}/*.test.ts"
             ]
         }
     ]
