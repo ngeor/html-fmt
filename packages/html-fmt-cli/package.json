@@ -1,6 +1,6 @@
 {
   "name": "@ngeor/html-fmt-cli",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "description": "CLI formatter for HTML files",
   "author": "Nikolaos Georgiou <nikolaos.georgiou@gmail.com>",
   "homepage": "",
@@ -24,7 +24,7 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@ngeor/html-fmt-core": "^0.7.8",
+    "@ngeor/html-fmt-core": "^0.7.9",
     "commander": "^7.2.0"
   },
   "publishConfig": {
