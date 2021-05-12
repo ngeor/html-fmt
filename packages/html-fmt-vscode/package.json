@@ -2,7 +2,7 @@
 	"name": "html-fmt-vscode",
 	"displayName": "HTML formatter",
 	"description": "Formats HTML files",
-	"version": "0.7.6",
+	"version": "0.7.7",
 	"publisher": "NikolaosGeorgiou",
 	"license": "MIT",
 	"repository": {
@@ -87,6 +87,6 @@
 		"vscode-test": "^1.5.2"
 	},
 	"dependencies": {
-		"@ngeor/html-fmt-core": "^0.7.6"
+		"@ngeor/html-fmt-core": "^0.7.7"
 	}
 }
