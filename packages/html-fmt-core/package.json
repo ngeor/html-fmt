@@ -6,7 +6,7 @@
     "compile": "tsc",
     "test": "mocha -r ts-node/register src/**/*.test.ts",
     "rm-lock": "rm package-lock.json",
-    "prepack": "../../scripts/prepack.js"
+    "prepack": "node ../../scripts/prepack.js"
   },
   "main": "out/index.js",
   "author": "Nikolaos Georgiou",
