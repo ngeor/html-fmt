@@ -11,7 +11,8 @@
     "compile": "tsc",
     "start": "ts-node src/index.ts",
     "test": "echo \"No tests yet\"",
-    "rm-lock": "rm package-lock.json"
+    "rm-lock": "rm package-lock.json",
+    "prepack": "../../scripts/prepack.js"
   },
   "devDependencies": {
     "@types/chai": "^4.2.18",
