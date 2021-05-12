@@ -1,6 +1,6 @@
 import { format } from "./index";
 import { expect } from "chai";
-import { VoidTagsTrailingSlashStyle, AttributeQuoteStyle } from "./src/FormatOptions";
+import { VoidTagsTrailingSlashStyle, AttributeQuoteStyle } from "./FormatOptions";
 
 describe('index', () => {
     it('should parse a div', () => {

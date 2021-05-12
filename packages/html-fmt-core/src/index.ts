@@ -1,8 +1,8 @@
-import { FormatOptions } from "./src/FormatOptions";
-import { Formatter } from "./src/Formatter";
+import { FormatOptions } from "./FormatOptions";
+import { Formatter } from "./Formatter";
 
-export * from "./src/Formatter";
-export * from "./src/FormatOptions";
+export * from "./Formatter";
+export * from "./FormatOptions";
 
 export function format(data: string, overrideOptions?: Partial<FormatOptions>) {
     const formatter = new Formatter(data, overrideOptions);
