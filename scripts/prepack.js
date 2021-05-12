@@ -8,5 +8,10 @@ if (fs.existsSync(".npmignore")) {
 
 let packageJson = JSON.parse(fs.readFileSync("package.json", { encoding: "utf8"}));
 packageJson.main = "index.js";
+
+if (packageJson.bin) {
+    packageJson.bin = "index.js";
+}
+
 packageJson.scripts = {};
 fs.writeFileSync("out/package.json", JSON.stringify(packageJson));
