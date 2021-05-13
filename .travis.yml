@@ -10,7 +10,7 @@ before_deploy:
 deploy:
   skip_cleanup: true
   provider: script
-  script: npx lerna publish -y -c --contents out from-package
+  script: npx lerna publish -y --contents out from-package
   on:
     tags: true
     repo: ngeor/html-fmt
