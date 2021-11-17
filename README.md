@@ -2,7 +2,7 @@
 
 > HTML formatter (pretty printer) supporting custom tags.
 
-[![Build Status](https://travis-ci.org/ngeor/html-fmt.svg?branch=master)](https://travis-ci.org/ngeor/html-fmt)
+
 [![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/NikolaosGeorgiou.html-fmt-vscode)](https://marketplace.visualstudio.com/items?itemName=NikolaosGeorgiou.html-fmt-vscode)
 
 Available as a CLI app and a Visual Studio Code extension.
