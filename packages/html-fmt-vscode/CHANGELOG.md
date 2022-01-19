@@ -8,6 +8,13 @@ to structure this file.
 
 ## [Unreleased]
 
+# [0.8.0]
+
+- Added: new setting `extraNonIndentingTags` to allow indentation of certain tags
+  to remain unchanged. As an example, adding `html` to the list of these tags will
+  cause the tags `head` and `body` to be on the same indentation level as the
+  parent `html` tag.
+
 # [0.7.0]
 
 - Added: Support for Angular square bracket attributes (thanks to [ringtail003](https://github.com/ringtail003)!)
