@@ -2,7 +2,7 @@
 	"name": "html-fmt-vscode",
 	"displayName": "HTML formatter",
 	"description": "Formats HTML files",
-	"version": "0.7.10",
+	"version": "0.8.0",
 	"publisher": "NikolaosGeorgiou",
 	"license": "MIT",
 	"repository": {
@@ -62,10 +62,10 @@
 						"Always use double quotes if possible"
 					]
 				},
-                "html-fmt-vscode.extraNonIndentingTags": {
-                    "type": "array",
-                    "description": "A collection of tags that do not increase indentation"
-                }
+				"html-fmt-vscode.extraNonIndentingTags": {
+					"type": "array",
+					"description": "A collection of tags that do not increase indentation"
+				}
 			}
 		}
 	},
@@ -91,6 +91,6 @@
 		"vscode-test": "^1.5.2"
 	},
 	"dependencies": {
-		"@ngeor/html-fmt-core": "^0.7.10"
+		"@ngeor/html-fmt-core": "^0.8.0"
 	}
 }
