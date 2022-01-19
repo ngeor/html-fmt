@@ -53,6 +53,7 @@ Command line options:
   attribute values. Possible values: preserve, add. The default value is add.
 - `--pre-commit-hook` Runs as a git pre-commit hook (inspired by
   [Prettier](https://prettier.io/docs/en/precommit.html#option-5-bash-script))
+- `--extra-non-indenting-tags`: Pass HTML tags that should cause indentation to stay unchanged.
 
 You can use the CLI with one of the following ways:
 
@@ -82,6 +83,9 @@ npx @ngeor/html-fmt-cli --pre-commit-hook -m -i .
 ### Requirements
 
 You will need `lerna` (install with `npm i -g lerna`).
+
+- Install dependencies with `lerna bootstrap`.
+- Compile TypeScript with `lerna run compile`.
 
 ### Bumping version
 

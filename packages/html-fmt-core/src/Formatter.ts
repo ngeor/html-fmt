@@ -29,6 +29,7 @@ export const defaultFormatOptions: FormatOptions = {
         "TMPL_VAR",
         "TMPL_WS"
     ],
+    extraNonIndentingTags: [],
     sameLineTags: [
         "textarea",
         "TMPL_WS",
@@ -70,6 +71,7 @@ export class Formatter {
     private tagName = '';
     private lastText = '';
     private state: State = State.Initial;
+    private nonIndentingTags: Set<String> = new Set();
     readonly parser: Parser;
     readonly writer: Writer;
 
@@ -80,10 +82,20 @@ export class Formatter {
         };
         this.parser = new Parser(new Reader(data));
         this.writer = new Writer(this.options.indentSize);
+
+        for (let i = 0; i < this.options.nonIndentingTags.length; i++) {
+            const element = this.options.nonIndentingTags[i];
+            this.nonIndentingTags.add(element.toUpperCase());
+        }
+
+        for (let i = 0; i < this.options.extraNonIndentingTags.length; i++) {
+            const element = this.options.extraNonIndentingTags[i];
+            this.nonIndentingTags.add(element.toUpperCase());
+        }
     }
 
     isNonIndentingTag(s: string): boolean {
-        return this.options.nonIndentingTags.includes(s);
+        return this.nonIndentingTags.has(s.toUpperCase());
     }
 
     isSameLineTag(s: string): boolean {
@@ -255,7 +267,9 @@ export class Formatter {
     }
 
     onCloseTag(closeTag: string): void {
-        this.writer.decreaseIndentation();
+        if (!this.isNonIndentingTag(closeTag)) {
+            this.writer.decreaseIndentation();
+        }
 
         // close previous open tag, unless it is the same closing tag (e.g. <div></div>)
         const matchesLastOpenTag = this.tagName === closeTag;

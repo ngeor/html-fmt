@@ -39,23 +39,34 @@ export interface FormatOptions {
      * The amount of spaces to indent with.
      */
     indentSize: number;
+
     /**
      * A collection of tags that do not increase the indentation level (e.g. <br>)
      */
     nonIndentingTags: string[];
+
+    /**
+     * An additional collection of tags that do not increase the indentation level.
+     * This can be used in addition to `nonIndentingTags` in order to preserve the defaults.
+     */
+    extraNonIndentingTags: string[];
+
     /**
      * A collection of tags that are not followed by a new line
      */
     sameLineTags: string[];
+
     /**
      * A collection of tags that decrease the indentation level (e.g. TMPL_ELSE)
      */
     deIndentingTags: string[];
+
     /**
      * A collection of tags that only have a start tag.
      * See https://html.spec.whatwg.org/multipage/syntax.html#void-elements
      */
     voidTags: string[];
+
     /**
      * The number of attributes, inclusive, after which attributes will be printed on separate lines.
      */

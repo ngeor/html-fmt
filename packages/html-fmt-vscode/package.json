@@ -61,7 +61,11 @@
 						"Do not modify input",
 						"Always use double quotes if possible"
 					]
-				}
+				},
+                "html-fmt-vscode.extraNonIndentingTags": {
+                    "type": "array",
+                    "description": "A collection of tags that do not increase indentation"
+                }
 			}
 		}
 	},

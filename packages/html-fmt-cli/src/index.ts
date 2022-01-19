@@ -16,6 +16,7 @@ interface Arguments {
     voidTagsTrailingSlashStyle: string;
     attributeQuoteStyle: string;
     preCommitHook: boolean;
+    extraNonIndentingTags: string[];
 }
 
 function createFormatOptions(args: Arguments): Partial<FormatOptions> {
@@ -35,6 +36,8 @@ function createFormatOptions(args: Arguments): Partial<FormatOptions> {
     if (args.attributeQuoteStyle) {
         options.attributeQuoteStyle = args.attributeQuoteStyle as AttributeQuoteStyle;
     }
+
+    options.extraNonIndentingTags = args.extraNonIndentingTags;
 
     return options;
 }
@@ -148,6 +151,10 @@ function main() {
         'Controls the attribute quote style. Possible values: preserve, add.',
         'add'
     );
+    commander.option(
+        '--extra-non-indenting-tags [extra-non-indenting-tags...]',
+        'HTML tags that will cause indentation to remain unchanged'
+    )
     commander.option('--pre-commit-hook', 'Runs as a git pre-commit hook, against the files reported by git diff --cached --name-only --diff-filter=ACMR');
     commander.parse(process.argv);
     const args : Arguments = commander as unknown as Arguments;

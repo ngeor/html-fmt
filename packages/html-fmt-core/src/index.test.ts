@@ -591,4 +591,48 @@ describe('index', () => {
 >
 `);
     });
+
+    describe('extraNonIndentingTags', () => {
+        it('should indent head and body', () => {
+            const input = `<html>
+            <head>
+                <title>Hello</title>
+            </head>
+            <body>
+                <h1>Hi</h1>
+            </body>
+            </html>`;
+            const result = format(input);
+            expect(result).to.eql(`<html>
+    <head>
+        <title>Hello</title>
+    </head>
+    <body>
+        <h1>Hi</h1>
+    </body>
+</html>
+`);
+        });
+
+        it('should not indent head and body', () => {
+            const input = `<html>
+            <head>
+                <title>Hello</title>
+            </head>
+            <body>
+                <h1>Hi</h1>
+            </body>
+            </html>`;
+            const result = format(input, { extraNonIndentingTags: ['html'] });
+            expect(result).to.eql(`<html>
+<head>
+    <title>Hello</title>
+</head>
+<body>
+    <h1>Hi</h1>
+</body>
+</html>
+`);
+        })
+    });
 });
