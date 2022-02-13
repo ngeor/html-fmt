@@ -20,5 +20,5 @@ jobs:
     - name: Install lerna
       run: npm i -g lerna
     - run: lerna bootstrap
-    - run: lerna compile
-    - run: lerna test
+    - run: lerna run compile
+    - run: lerna run test
