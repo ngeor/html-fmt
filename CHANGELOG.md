@@ -5,8 +5,10 @@ All notable changes to this project will be documented in this file.
 
 ### Miscellaneous Tasks
 
-- Updated changelog
+- Adding GitHub Actions workflow
 - Adding cliff.toml
+- Move dependencies to dedicated group in changelog
+- Updated changelog
 
 ## [0.8.0] - 2022-01-19
 
