@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ trunk ]
+    branches: [ master ]
   pull_request:
-    branches: [ trunk ]
+    branches: [ master ]
 
 jobs:
   node_js:
@@ -16,8 +16,9 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
+        cache-dependency-path: 'packages/*/package-lock.json'
     - name: Install lerna
       run: npm i -g lerna
     - run: lerna bootstrap
-    - run: lerna compile
-    - run: lerna test
+    - run: lerna run compile
+    - run: lerna run test
