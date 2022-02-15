@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 - Adding GitHub Actions workflow
 - Adding cliff.toml
+- Fix CI (#18)
 - Move dependencies to dedicated group in changelog
 - Updated changelog
 
