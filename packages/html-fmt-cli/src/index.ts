@@ -4,7 +4,7 @@ import { spawnSync } from "child_process";
 import { readFileSync, writeFileSync, statSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { format, VoidTagsTrailingSlashStyle, FormatOptions, AttributeQuoteStyle } from "@ngeor/html-fmt-core";
-import commander = require("commander");
+import { Command } from 'commander';
 
 interface Arguments {
     input: string;
@@ -132,35 +132,36 @@ function processFile(args: Arguments) {
 }
 
 function main() {
-    commander.option('-i, --input <filename>', 'The file or directory to format');
-    commander.option('-m, --modify', 'Modify the file in-place');
-    commander.option('-t, --test', 'Tests if the formatter can handle a file without errors');
-    commander.option('-r, --recursive', 'Process directories recursively');
-    commander.option('--indent-size <indent-size>', 'Indentation size', '4');
-    commander.option(
+    const program = new Command();
+    program.option('-i, --input <filename>', 'The file or directory to format');
+    program.option('-m, --modify', 'Modify the file in-place');
+    program.option('-t, --test', 'Tests if the formatter can handle a file without errors');
+    program.option('-r, --recursive', 'Process directories recursively');
+    program.option('--indent-size <indent-size>', 'Indentation size', '4');
+    program.option(
         '--multiline-attribute-threshold <multiline-attribute-threshold>',
         'The number of attributes, inclusive, after which each attribute will be printed on its own line',
         '4');
-    commander.option(
+    program.option(
         '--void-tags-trailing-slash-style <void-tags-trailing-slash-style>',
         'Controls the trailing slash of void elements (br, hr, etc). Possible values: preserve, add, remove.',
         'remove'
     );
-    commander.option(
+    program.option(
         '--attribute-quote-style <attribute-quote-style>',
         'Controls the attribute quote style. Possible values: preserve, add.',
         'add'
     );
-    commander.option(
+    program.option(
         '--extra-non-indenting-tags [extra-non-indenting-tags...]',
         'HTML tags that will cause indentation to remain unchanged'
     )
-    commander.option('--pre-commit-hook', 'Runs as a git pre-commit hook, against the files reported by git diff --cached --name-only --diff-filter=ACMR');
-    commander.parse(process.argv);
-    const args : Arguments = commander as unknown as Arguments;
+    program.option('--pre-commit-hook', 'Runs as a git pre-commit hook, against the files reported by git diff --cached --name-only --diff-filter=ACMR');
+    program.parse(process.argv);
+    const args : Arguments = program as unknown as Arguments;
     const input: string = args.input;
     if (!input) {
-        return commander.help();
+        return program.help();
     }
 
     if (!existsSync(input)) {
