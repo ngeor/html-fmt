@@ -1,6 +1,6 @@
 {
   "name": "@ngeor/html-fmt-cli",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "CLI formatter for HTML files",
   "author": "Nikolaos Georgiou <nikolaos.georgiou@gmail.com>",
   "homepage": "",
@@ -10,8 +10,7 @@
   "scripts": {
     "compile": "tsc",
     "start": "ts-node src/index.ts",
-    "test": "echo \"No tests yet\"",
-    "prepack": "node ../../scripts/prepack.js"
+    "test": "echo \"No tests yet\""
   },
   "devDependencies": {
     "@types/chai": "^4.2.18",
@@ -28,5 +27,8 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "/out"
+  ]
 }

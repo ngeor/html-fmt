@@ -1,11 +1,10 @@
 {
   "name": "@ngeor/html-fmt-core",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "HTML formatter",
   "scripts": {
     "compile": "tsc",
-    "test": "mocha -r ts-node/register src/**/*.test.ts",
-    "prepack": "node ../../scripts/prepack.js"
+    "test": "mocha -r ts-node/register src/**/*.test.ts"
   },
   "main": "out/index.js",
   "author": "Nikolaos Georgiou",
@@ -21,5 +20,8 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "/out"
+  ]
 }
