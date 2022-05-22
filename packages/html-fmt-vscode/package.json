@@ -2,7 +2,7 @@
 	"name": "html-fmt-vscode",
 	"displayName": "HTML formatter",
 	"description": "Formats HTML files",
-	"version": "0.8.0",
+	"version": "0.9.0",
 	"publisher": "NikolaosGeorgiou",
 	"license": "MIT",
 	"repository": {

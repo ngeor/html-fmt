@@ -108,7 +108,12 @@ The project uses [npm workspaces](https://docs.npmjs.com/cli/v8/using-npm/worksp
 
 ### Bumping version
 
-TODO
+- Run `git-cliff -t x.y.z -o CHANGELOG.md`
+- Run `npm version minor -ws`
+
+### Publishing
+
+- Publish with `npm publish -ws`
 
 ### Creating extension
 
@@ -131,4 +136,3 @@ To publish the extension:
 ### Cleaning output files
 
 With `git clean -fdx` you can delete `out` and `node_modules` folders.
-
