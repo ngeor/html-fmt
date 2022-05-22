@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
       "packages/html-fmt-core",
-      "packages/html-fmt-cli"
+      "packages/html-fmt-cli",
+      "packages/html-fmt-vscode"
   ]
 
 }

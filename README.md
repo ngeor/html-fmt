@@ -118,9 +118,9 @@ The project uses [npm workspaces](https://docs.npmjs.com/cli/v8/using-npm/worksp
 ### Creating extension
 
 You will need `vsce` (install with `npm i -g vsce`).
-
 Run the following to be able to package the extension:
 
+- Temporarily remove the `vscode` package from the root `package.json`
 - `cd packages/html-fmt-vscode`
 - `rm -rf node_modules && npm i`
 - `vsce package`
