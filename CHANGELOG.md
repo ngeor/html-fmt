@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [0.9.0] - 2022-05-22
+
+### Dependencies
+
+- Update dependency @types/node to v17
+- Update dependency commander to v9
+- Update dependency mocha to v10
+- Update dependency mocha to v9
+- Update dependency ts-node to v10
 
 ### Miscellaneous Tasks
 
@@ -9,7 +17,9 @@ All notable changes to this project will be documented in this file.
 - Adding cliff.toml
 - Fix CI (#18)
 - Move dependencies to dedicated group in changelog
+- Remove lerna
 - Updated changelog
+- Updated usage of commander according to docs
 
 ## [0.8.0] - 2022-01-19
 
