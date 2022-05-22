@@ -16,9 +16,7 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
-        cache-dependency-path: 'packages/*/package-lock.json'
-    - name: Install lerna
-      run: npm i -g lerna
-    - run: lerna bootstrap
-    - run: lerna run compile
-    - run: lerna run test
+        cache-dependency-path: 'package-lock.json'
+    - run: npm install
+    - run: npm run compile --workspaces
+    - run: npm run test --workspaces --if-present

@@ -78,40 +78,6 @@ npx @ngeor/html-fmt-cli --pre-commit-hook -m -i .
 - [Packaging VS Code Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
 - [Prettier pre-commit hook](https://prettier.io/docs/en/precommit.html#option-5-bash-script)
 
-## Developing
-
-### Requirements
-
-You will need `lerna` (install with `npm i -g lerna`).
-
-- Install dependencies with `lerna bootstrap`.
-- Compile TypeScript with `lerna run compile`.
-
-### Bumping version
-
-To bump the version on all packages, use lerna:
-`lerna version patch --force-publish`
-
-### Creating extension
-
-You will need `vsce` (install with `npm i -g vsce`).
-
-`vsce` does not work well with the lerna monorepo. Run the following to be able
-to package the extension:
-
-- `cd packages/html-fmt-vscode`
-- `rm -rf node_modules && npm i`
-- `vsce package`
-
-To publish the extension:
-
-- Create a Personal Access Token
-  [here](https://dev.azure.com/nikolaosgeorgiou/_usersSettings/tokens). Select
-  "All accessible organizations" and all "Marketplace" scopes.
-- Login with `vsce login NikolaosGeorgiou`
-- Publish with `vsce publish`
-
-
 ## Supported Syntax
 
 ### HTML
@@ -133,3 +99,36 @@ Supported elements:
 - Proper indentation for `<TMPL_IF>` and `<TMPL_ELSE>`
 - Tags inside tags `<p <TMPL_IF condition>class="hi"</TMPL_IF>>`
 - Tags inside attribute values `<p class="<TMPL_V foo escape=HTML>">`
+
+## Developing
+
+### Requirements
+
+The project uses [npm workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces).
+
+### Bumping version
+
+TODO
+
+### Creating extension
+
+You will need `vsce` (install with `npm i -g vsce`).
+
+Run the following to be able to package the extension:
+
+- `cd packages/html-fmt-vscode`
+- `rm -rf node_modules && npm i`
+- `vsce package`
+
+To publish the extension:
+
+- Create a Personal Access Token
+  [here](https://dev.azure.com/nikolaosgeorgiou/_usersSettings/tokens). Select
+  "All accessible organizations" and all "Marketplace" scopes.
+- Login with `vsce login NikolaosGeorgiou`
+- Publish with `vsce publish`
+
+### Cleaning output files
+
+With `git clean -fdx` you can delete `out` and `node_modules` folders.
+

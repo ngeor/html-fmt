@@ -43,7 +43,11 @@ export function activate(context: vscode.ExtensionContext) {
 				];
 			} catch (e) {
 				console.error(e);
-				vscode.window.showErrorMessage(`${e.message} at line ${formatter.parser.reader.row + 1} col ${formatter.parser.reader.col + 1}`);
+                let msg = '';
+                if (e instanceof Error) {
+                    msg = e.message;
+                }
+				vscode.window.showErrorMessage(`${msg} at line ${formatter.parser.reader.row + 1} col ${formatter.parser.reader.col + 1}`);
 				return [];
 			}
 		}

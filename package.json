@@ -1,7 +1,10 @@
 {
-  "name": "root",
+  "name": "html-fmt",
   "private": true,
-  "devDependencies": {
-    "lerna": "^4.0.0"
-  }
+  "workspaces": [
+      "packages/html-fmt-core",
+      "packages/html-fmt-cli",
+      "packages/html-fmt-vscode"
+  ]
+
 }
