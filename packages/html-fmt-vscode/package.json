@@ -90,6 +90,6 @@
 		"vscode-test": "^1.5.2"
 	},
 	"dependencies": {
-		"@ngeor/html-fmt-core": "^0.8.0"
+		"@ngeor/html-fmt-core": "^0.9.1"
 	}
 }
